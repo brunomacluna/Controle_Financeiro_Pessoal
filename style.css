@@ -1,23 +1,102 @@
+body {
+    background-color: black;
+    color: aliceblue;
+}
+
 #titulo-principal {
     text-align: center;
 }
 
 .tabelas-conteiner {
-    background-color: blue;
+    background-color:rgb(48, 48, 51);
     display: flex;
     justify-content: space-evenly;
 }
 .tabela-custos {
-    background-color: blueviolet;
+    background-color: rgb(48, 48, 51);
     margin-top: 5%;
     margin-bottom: 5%;
 }
 .tabela-renda {
-    background-color: aqua;
+    background-color: rgb(48, 48, 51);
     margin-top: 5%;
     margin-bottom: 5%;
 }
 
 #resultado {
     text-align: center;
+    font-size: x-large;
+}
+
+.botao-atualizar {
+    color: aliceblue;
+    background-color: rgb(15, 55, 235);
+   
+}
+.botao-deletar {
+    color: aliceblue;
+    background-color: brown;
+   
+}
+#adicionar-linha-renda {
+    color: aliceblue;
+    background-color: rgb(86, 116, 95);
+    width: 100%;
+}
+#adicionar-linha-custos {
+    color: aliceblue;
+    background-color: rgb(86, 116, 95);
+    width: 100%;
+}
+
+input[name="valor"] {
+    text-align: center;
+}
+
+#total-custo {
+    text-align: center;
+    background-color: black;
+}
+#total-custo-texto {
+    background-color: black;
+}
+#total-renda {
+    text-align: center;
+    background-color: black;
+}
+#total-renda-texto {
+    background-color: black;
+}
+
+#titulo-tabela-custos {
+    background-color: black;
+}
+#titulo-tabela-renda {
+    background-color: black;
+}
+
+#rodape {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    color: aliceblue;
+    background-color:  rgb(48, 48, 51);
+}
+
+.botoes-conteiners {
+    display: flex;
+    background-color: rgb(48, 48, 51);
+    justify-content:space-around;
+}
+
+#button-salvar {
+    color: aliceblue;
+    background-color: rgb(4, 80, 21);
+   font-size: xx-large;
+}
+#button-gerar-pdf {
+    color: aliceblue;
+    background-color: rgb(8, 5, 196);
+   font-size: xx-large;
 }
