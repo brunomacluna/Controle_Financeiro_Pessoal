@@ -1,0 +1,23 @@
+#titulo-principal {
+    text-align: center;
+}
+
+.tabelas-conteiner {
+    background-color: blue;
+    display: flex;
+    justify-content: space-evenly;
+}
+.tabela-custos {
+    background-color: blueviolet;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.tabela-renda {
+    background-color: aqua;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#resultado {
+    text-align: center;
+}
