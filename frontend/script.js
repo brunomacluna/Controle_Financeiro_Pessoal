@@ -77,6 +77,32 @@ function salvarDados(event){
         });
     }
     console.log(dadosRenda);
+
+    fetch('/salvar-dados', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        custos: dadosCustos,
+        renda: dadosRenda
+    })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Erro ao salvar os dados");
+        }
+        return response.json(); // ou .text() se o backend não devolver JSON
+    })
+    .then(data => {
+        console.log("Resposta do backend:", data);
+        alert("Dados salvos com sucesso!");
+    })
+    .catch(error => {
+        console.error("Erro na requisição:", error);
+        alert("Falha ao salvar os dados.");
+    });
+
 }
 botaoSalvar.addEventListener('click', salvarDados);
 
