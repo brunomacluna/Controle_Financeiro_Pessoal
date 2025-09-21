@@ -5,6 +5,27 @@ body {
 
 #titulo-principal {
     text-align: center;
+    order: 2;
+    text-align: center;
+}
+
+#secao-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+#resultado {
+    order: 1; 
+    margin-left: 10%;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.botoes-conteiners {
+    order: 3;
+    margin-right: 10%;
+    display: flex;    
 }
 
 .tabelas-conteiner {
@@ -22,21 +43,10 @@ body {
     margin-top: 5%;
     margin-bottom: 5%;
 }
-
-#resultado {
-    text-align: center;
-    font-size: x-large;
-}
-
-.botao-atualizar {
-    color: aliceblue;
-    background-color: rgb(15, 55, 235);
-   
-}
 .botao-deletar {
     color: aliceblue;
-    background-color: brown;
-   
+    background-color: rgb(80, 42, 42);
+    width: 100%;
 }
 #adicionar-linha-renda {
     color: aliceblue;
