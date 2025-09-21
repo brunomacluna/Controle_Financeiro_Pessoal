@@ -1,16 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-
-
-
-let botaoSalvar = document.getElementById("button-salvar");
 let botaoGerarPDF = document.getElementById("button-gerar-pdf");
 let tabelaCustos = document.getElementById("table-tabela-custos");
 let tabelaRenda = document.getElementById("table-tabela-renda");
-
-
-
-
 
 let corpoTabelaCustos = document.getElementById("corpo-tabela-custos");
 let linhaTotalCustos = document.getElementById("linha-total-custos");
@@ -56,6 +48,39 @@ document.addEventListener('click', function(event) {
         }
     }
 });
+
+let linhasCustos = corpoTabelaCustos.getElementsByTagName("tr");
+let botaoSalvar = document.getElementById("button-salvar");
+let linhasRenda = corpoTabelaRenda.getElementsByTagName("tr");
+function salvarDados(event){
+    event.preventDefault();
+    let dadosCustos = [];
+    for (let linha of linhasCustos){
+        let descricao = linha.querySelector('input[name="descricao"]').value;
+        let valor = linha.querySelector('input[name="valor"]').value;
+
+        dadosCustos.push({
+            descricao: descricao,
+            valor: parseFloat(valor) || 0
+        });
+    }
+    console.log(dadosCustos);   
+
+    let dadosRenda = [];
+    for (let linha of linhasRenda){
+        let descricao = linha.querySelector('input[name="descricao"]').value;
+        let valor = linha.querySelector('input[name="valor"]').value;
+
+        dadosRenda.push({
+            descricao: descricao,
+            valor: parseFloat(valor) || 0
+        });
+    }
+    console.log(dadosRenda);
+}
+botaoSalvar.addEventListener('click', salvarDados);
+
+
 
 
 });//DOMContentLoaded
