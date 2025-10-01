@@ -1,4 +1,4 @@
-document.getElementById("btn-voltar").addEventListener("click", function() {
+document.getElementById("botao-voltar").addEventListener("click", function() {
     window.location.href = "./login.html";
 });
 
