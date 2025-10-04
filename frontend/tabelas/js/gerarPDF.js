@@ -1,6 +1,7 @@
 // gerarPDF.js
 import { sanitizarTexto } from './validacoes.js';
 import { corpoTabelaCustos, corpoTabelaRenda } from './tabelas.js';
+import { totalCustos, totalRenda, totalResultado } from './calcular.js';
 
 let botaoGerarPDF = document.getElementById("button-gerar-pdf");
 let linhasCustos = corpoTabelaCustos.getElementsByTagName("tr");
@@ -29,11 +30,8 @@ function gerarPDF(event) {
     }
     console.log(dadosCustos);
 
-    let totalCustos = 0;
-    for (let custos of dadosCustos) {
-        totalCustos += custos.valor;
-    }
-    document.getElementById("total-custo").textContent = totalCustos.toFixed(2);
+    const totalCustosValor = totalCustos(dadosCustos);
+    document.getElementById("total-custo").textContent = totalCustosValor.toFixed(2);
 
     let dadosRenda = [];
     for (let linha of linhasRenda) {
@@ -56,16 +54,13 @@ function gerarPDF(event) {
     }
     console.log(dadosRenda);
 
-    let totalRenda = 0;
-    for (let renda of dadosRenda) {
-        totalRenda += renda.valor;
-    }
-    document.getElementById("total-renda").textContent = totalRenda.toFixed(2);
+    const totalRendaValor = totalRenda(dadosRenda);
+    document.getElementById("total-renda").textContent = totalRendaValor.toFixed(2);
 
-    let totalResultado = totalRenda - totalCustos;
-    let resultadoElemento = document.getElementById("valor-total");
-    resultadoElemento.textContent = totalResultado.toFixed(2);
-    resultadoElemento.style.color = totalResultado > 0 ? "green" : "red";
+    const resultadoFinal = totalResultado(totalRendaValor, totalCustosValor);
+    const resultadoElemento = document.getElementById("valor-total");
+    resultadoElemento.textContent = resultadoFinal.toFixed(2);
+    resultadoElemento.style.color = resultadoFinal >= 0 ? "green" : "red";
 
     fetch('/gerar-relatorio', {
         method: 'POST',
