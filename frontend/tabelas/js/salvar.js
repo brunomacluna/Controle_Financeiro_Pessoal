@@ -11,6 +11,7 @@ function salvarDados(event) {
     event.preventDefault();
     let dadosCustos = [];
     for (let linha of linhasCustos) {
+        let id = linha.getAttribute('data-id');
         let descricao = sanitizarTexto(linha.querySelector('input[name="descricao"]').value);
         let valorStr = linha.querySelector('input[name="valor"]').value;
         let valor = parseFloat(valorStr);
@@ -25,7 +26,7 @@ function salvarDados(event) {
                 alert("Valor deve ser um número positivo.");
                 return;
             }
-            dadosCustos.push({ descricao, valor });
+            dadosCustos.push({ id, descricao, valor });
         }
     }
     console.log(dadosCustos);
@@ -35,6 +36,7 @@ function salvarDados(event) {
 
     let dadosRenda = [];
     for (let linha of linhasRenda) {
+        let id = linha.getAttribute('data-id');
         let descricao = sanitizarTexto(linha.querySelector('input[name="descricao"]').value);
         let valorStr = linha.querySelector('input[name="valor"]').value;
         let valor = parseFloat(valorStr);
@@ -48,7 +50,7 @@ function salvarDados(event) {
                 alert("Valor deve ser um número positivo.");
                 return;
             }
-            dadosRenda.push({ descricao, valor });
+            dadosRenda.push({ id, descricao, valor });
         }
     }
     console.log(dadosRenda);

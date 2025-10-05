@@ -68,9 +68,9 @@ function gerarPDF(event) {
         body: JSON.stringify({
             custos: dadosCustos,
             renda: dadosRenda,
-            totalCustos,
-            totalRenda,
-            diferencaFinal: totalResultado
+            totalCustos: totalCustosValor,
+            totalRenda: totalRendaValor,
+            diferencaFinal: resultadoFinal
         })
     })
         .then(response => {

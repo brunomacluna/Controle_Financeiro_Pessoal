@@ -8,6 +8,7 @@ export let botaoAdicionarLinhaCustos = document.getElementById("adicionar-linha-
 export function adicionarLinhaTabelaCustos(event) {
     event.preventDefault();
     let novaLinha = document.createElement("tr");
+    novaLinha.setAttribute('data-id', 'novo');
     novaLinha.innerHTML = `
         <td><input type="text" name="descricao" placeholder="Escreva aqui"></td>
         <td><input type="number" name="valor" placeholder="Valor"></td>
@@ -19,9 +20,10 @@ botaoAdicionarLinhaCustos.addEventListener('click', adicionarLinhaTabelaCustos);
 
 export function coletarDadosTabela(tabelaDOM) {
     const dados = [];
-
-    const linhas = tabelaDOM.getElementsByTagName("tr");
+    const linhas = tabelaDOM.querySelectorAll('tr[data-id]');
+    
     for (let linha of linhas) {
+        const id = linha.getAttribute('data-id');
         const inputDescricao = linha.querySelector('input[name="descricao"]');
         const inputValor = linha.querySelector('input[name="valor"]');
 
@@ -39,7 +41,7 @@ export function coletarDadosTabela(tabelaDOM) {
         }
 
         if (descricaoPreenchida && valorPreenchido && !isNaN(valor) && valor >= 0) {
-            dados.push({ descricao, valor });
+            dados.push({ id, descricao, valor });
         }
     }
 
@@ -53,6 +55,7 @@ export let botaoAdicionarLinhaRenda = document.getElementById("adicionar-linha-r
 export function adicionarLinhaTabelaRenda(event) {
     event.preventDefault();
     let novaLinha2 = document.createElement("tr");
+    novaLinha2.setAttribute('data-id', 'novo');
     novaLinha2.innerHTML = `
         <td><input type="text" name="descricao" placeholder="Escreva aqui"></td>
         <td><input type="number" name="valor" placeholder="Valor"></td>

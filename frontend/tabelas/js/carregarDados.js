@@ -12,6 +12,7 @@ fetch('/buscar-dados')
         corpoTabelaCustos.innerHTML = '';
         for (let item of custos) {
             let linha = document.createElement("tr");
+            linha.setAttribute('data-id', item.id);
             linha.innerHTML = `
                 <td><input type="text" name="descricao" value="${item.descricao}"></td>
                 <td><input type="number" name="valor" value="${item.valor}"></td>
@@ -23,6 +24,7 @@ fetch('/buscar-dados')
         corpoTabelaRenda.innerHTML = '';
         for (let item of renda) {
             let linha = document.createElement("tr");
+            linha.setAttribute('data-id', item.id);
             linha.innerHTML = `
                 <td><input type="text" name="descricao" value="${item.descricao}"></td>
                 <td><input type="number" name="valor" value="${item.valor}"></td>
