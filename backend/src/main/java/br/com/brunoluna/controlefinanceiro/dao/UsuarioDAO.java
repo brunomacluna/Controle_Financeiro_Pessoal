@@ -1,4 +1,4 @@
-package dao;
+package br.com.brunoluna.controlefinanceiro.dao;
 
 import br.com.brunoluna.controlefinanceiro.model.Usuario;
 
@@ -11,7 +11,7 @@ public class UsuarioDAO {
     public void cadastrarUsuario(Usuario usuario) {
         String sql = "insert into usuarios (login, senha , data_cadastro) values (?, ?, ?)";
 
-        try (Connection conn = ConexaoFactory.getConnection();
+        try (Connection conn = br.com.brunoluna.controlefinanceiro.dao.ConexaoFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, usuario.getLogin());
@@ -34,14 +34,14 @@ public class UsuarioDAO {
     }//cadastrarUsuario
 
     public void buscarLogin(Usuario usuario) {
-
+        //falta implementar
     }//buscarLogin
 
     public void atualizarUsuario(Usuario usuario) {
         String sql = "update usuarios set login = ?, senha = ? where login = ?";
 
-        try (Connection conn = ConexaoFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = br.com.brunoluna.controlefinanceiro.dao.ConexaoFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, usuario.setSenha());;
 
