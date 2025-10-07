@@ -8,10 +8,14 @@ public class ConexaoFactory {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/controle_financeiro";
     private static final String USUARIO = "postgres";
-    private static final String SENHA = "";
+
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USUARIO, SENHA);
+        String senha = System.getenv("DB_PASSWORD_POSTGRES");
+        if (senha == null) {
+            throw new IllegalStateException("Variável de ambiente DB_PASSWORD_POSTGRES não configurada");
+        }
+        return DriverManager.getConnection(URL, USUARIO, senha);
     }//getConnection
 
 }//ConexaoFactory

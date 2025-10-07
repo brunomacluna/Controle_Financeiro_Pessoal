@@ -60,7 +60,7 @@ public class Custos {
         }
 
         this.descricao = descricaoLimpa;
-    }
+    }//setDescricao
 
     public void setValor(BigDecimal valor) {
         if (valor == null) {
@@ -73,5 +73,5 @@ public class Custos {
             throw new IllegalArgumentException("O valor não pode ter mais que duas casas decimais.");
         }
         this.valor = valor;
-    }
+    }//setValor
 }//Custos
