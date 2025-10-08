@@ -12,6 +12,11 @@ public class Usuario {
     public Usuario() {
     }//contructor
 
+    public Usuario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+    }//contructor
+
     public Usuario(int id, String login, String senha, LocalDateTime dataCadastro) {
         this.id = id;
         this.login = login;

@@ -3,6 +3,7 @@ package br.com.brunoluna.controlefinanceiro.dao;
 import br.com.brunoluna.controlefinanceiro.model.Usuario;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,35 @@ public class UsuarioDAO {
         }//catch
 
     }//cadastrarUsuario
+
+    public Usuario buscarPorLogin(String login) {
+        String sql = "select id, login, senha, data_cadastro from usuarios where login = ?";
+
+        try (Connection conn = ConexaoFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, login);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                  Usuario usuario = new Usuario();
+                  usuario.setId(rs.getInt("id"));
+                  usuario.setLogin(rs.getString("login"));
+                  usuario.setSenha(rs.getString("senha"));
+                  usuario.setDataCadastro(rs.getObject("data_cadastro", LocalDateTime.class));
+                  return usuario;
+                } else {
+                    return null;
+                }//if else
+            }//try
+
+        }//try
+        catch (SQLException e) {
+            LOG.error("Erro ao buscar usuário por login: {}", login, e);
+            throw new RuntimeException("Erro ao buscar usuário no banco de dados.", e);
+        }//catch
+
+    }//buscarPorLogin
 
 }//UsuarioDAO
 
