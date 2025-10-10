@@ -87,4 +87,57 @@ public class CustosDAO {
         }//catch
     }//buscarPorUsuarioIdCustos
 
+    public boolean atualizarCustos(Custos custos) {
+        if (custos.getId() <= 0 || custos.getUsuarioId() <= 0) {
+            throw new IllegalArgumentException("Erro, ID de custo ou ID do usuário é inválido.");
+        }//if
+        if (custos.getDescricao() == null || custos.getDescricao().trim().isEmpty()) {
+            throw new IllegalArgumentException("Erro, descrição não pode ser nula ou vazia.");
+        }//if
+        if (custos.getValor() == null || custos.getValor().compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Erro, valor não pode ser nulo ou negativo.");
+        }//if
+
+        String sql = "update custos set descricao = ?, valor = ? where id = ? and usuario_id = ?";
+
+        try (Connection conn = ConexaoFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, custos.getDescricao());
+            stmt.setBigDecimal(2, custos.getValor());
+            stmt.setInt(3, custos.getId());
+            stmt.setInt(4, custos.getUsuarioId());
+
+            int linhasAfetadas = stmt.executeUpdate();
+
+            return linhasAfetadas > 0;
+        }//try
+        catch (SQLException e) {
+            LOG.error("Erro ao atualizar os custos do ID: {}, pertencente ao usuário {}", custos.getId(), custos.getUsuarioId(), e);
+            throw new RuntimeException("Erro ao atualizar a tabela custos no banco de dados.", e);
+        }//catch
+    }//atualizarCustos
+
+    public boolean deletarCustos(Custos custos) {
+        if (custos.getId() <= 0 || custos.getUsuarioId() <= 0) {
+            throw new IllegalArgumentException("Erro, ID de custo ou ID do usuário é inválido.");
+        }//if
+
+        String sql = "delete from custos where id = ? and usuario_id = ?";
+
+        try (Connection conn = ConexaoFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, custos.getId());
+            stmt.setInt(2, custos.getUsuarioId());
+
+            int linhasAfetadas = stmt.executeUpdate();
+
+            return linhasAfetadas > 0;
+        }//try
+        catch (SQLException e) {
+            LOG.error("Erro ao deletar os custos do ID: {}, pertencente ao usuário {}", custos.getId(), custos.getUsuarioId(), e);
+            throw new RuntimeException("Erro ao deletar custos no banco de dados.", e);
+        }//catch
+    }//deletarCustos
 }//CustosDAO
