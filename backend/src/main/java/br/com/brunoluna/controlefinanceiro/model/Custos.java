@@ -74,4 +74,16 @@ public class Custos {
         }
         this.valor = valor;
     }//setValor
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
 }//Custos
