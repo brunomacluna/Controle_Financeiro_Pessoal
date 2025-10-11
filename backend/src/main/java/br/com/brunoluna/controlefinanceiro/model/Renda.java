@@ -74,4 +74,16 @@ public class Renda {
         }
         this.valor = valor;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
 }//Renda

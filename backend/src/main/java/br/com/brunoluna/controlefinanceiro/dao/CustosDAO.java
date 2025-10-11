@@ -48,11 +48,11 @@ public class CustosDAO {
         }//try
         catch (SQLException e) {
             LOG.error("Erro ao cadastrar custo para o usuário do ID: {}", custos.getUsuarioId(), e);
-            throw new RuntimeException("Erro ao cadastrar custo no banco de dados", e);
+            throw new RuntimeException("Erro ao cadastrar custo no banco de dados.", e);
         }//catch
     }//cadastarCustos
 
-    public List<Custos> buscarPorUsuarioIdCustos(int usuarioId) {
+    public List<Custos> carregarCustos(int usuarioId) {
         if (usuarioId <= 0) {
             throw new IllegalArgumentException("ID de usuário inválido.");
         }//if
@@ -85,17 +85,17 @@ public class CustosDAO {
             LOG.error("Erro ao carregar os custos do usuarioId: {}", usuarioId, e);
             throw new RuntimeException("Erro ao carregar custos do banco de dados", e);
         }//catch
-    }//buscarPorUsuarioIdCustos
+    }//carregarCustos
 
     public boolean atualizarCustos(Custos custos) {
         if (custos.getId() <= 0 || custos.getUsuarioId() <= 0) {
-            throw new IllegalArgumentException("Erro, ID de custo ou ID do usuário é inválido.");
+            throw new IllegalArgumentException("ID de custo ou ID do usuário é inválido.");
         }//if
         if (custos.getDescricao() == null || custos.getDescricao().trim().isEmpty()) {
-            throw new IllegalArgumentException("Erro, descrição não pode ser nula ou vazia.");
+            throw new IllegalArgumentException("Descrição não pode ser nula ou vazia.");
         }//if
         if (custos.getValor() == null || custos.getValor().compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Erro, valor não pode ser nulo ou negativo.");
+            throw new IllegalArgumentException("Valor não pode ser nulo ou negativo.");
         }//if
 
         String sql = "update custos set descricao = ?, valor = ? where id = ? and usuario_id = ?";
@@ -120,7 +120,7 @@ public class CustosDAO {
 
     public boolean deletarCustos(Custos custos) {
         if (custos.getId() <= 0 || custos.getUsuarioId() <= 0) {
-            throw new IllegalArgumentException("Erro, ID de custo ou ID do usuário é inválido.");
+            throw new IllegalArgumentException("ID do custo ou ID do usuário é inválido.");
         }//if
 
         String sql = "delete from custos where id = ? and usuario_id = ?";
@@ -136,7 +136,7 @@ public class CustosDAO {
             return linhasAfetadas > 0;
         }//try
         catch (SQLException e) {
-            LOG.error("Erro ao deletar os custos do ID: {}, pertencente ao usuário {}", custos.getId(), custos.getUsuarioId(), e);
+            LOG.error("Erro ao deletar os custos do ID: {}, pertencente ao usuário: {}", custos.getId(), custos.getUsuarioId(), e);
             throw new RuntimeException("Erro ao deletar custos no banco de dados.", e);
         }//catch
     }//deletarCustos
