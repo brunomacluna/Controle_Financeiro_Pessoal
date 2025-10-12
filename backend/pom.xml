@@ -25,6 +25,14 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+
         <!-- PostgreSQL JDBC Driver -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -70,17 +78,17 @@
         <finalName>controle-financeiro-pessoal</finalName>
 
         <plugins>
-            <!-- Plugin do Tomcat -->
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>11.0.20</version>
                 <configuration>
-                    <path>/</path>  <!-- Context path na raiz -->
-                    <port>8080</port>
-                    <uriEncoding>UTF-8</uriEncoding>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
                 </configuration>
             </plugin>
+
 
             <!-- Plugin para compilar corretamente -->
             <plugin>

@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-                             https://javaee.github.io/javaee-spec/web-app_3_0.xsd"
-         version="3.0">
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
 
     <display-name>Controle Financeiro Pessoal</display-name>
 
-    <!-- Configuração de encoding -->
+    <!-- Filtro de encoding UTF-8 compatível com qualquer servidor -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
-        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-        <init-param>
-            <param-name>ignore</param-name>
-            <param-value>true</param-value>
-        </init-param>
+        <filter-class>br.com.brunoluna.controlefinanceiro.filter.CharacterEncodingFilter</filter-class>
     </filter>
 
     <filter-mapping>
