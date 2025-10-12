@@ -14,7 +14,7 @@ public class CustosDAO {
 
     private static final Logger LOG = LoggerFactory.getLogger(CustosDAO.class);
 
-    public Custos cadastarCustos(Custos custos) {
+    public Custos cadastrarCustos(Custos custos) {
         if (custos.getUsuarioId() <= 0) {
             throw new IllegalArgumentException("ID de usuário inválido!");
         }//if
